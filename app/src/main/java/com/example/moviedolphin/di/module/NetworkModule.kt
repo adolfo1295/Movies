@@ -1,7 +1,8 @@
 package com.example.moviedolphin.di.module
 
-import com.example.moviedolphin.BuildConfig
+import androidx.databinding.library.BuildConfig
 import com.example.moviedolphin.api.ApiService
+import com.example.moviedolphin.api.factory.LiveDataCallAdapterFactory
 import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -20,10 +21,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(okHttpClient: OkHttpClient): Retrofit{
+    fun provideApiService(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(NetworkResponseAdapterFactory())
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .baseUrl(URL_BASE)
             .client(okHttpClient)
             .build()
@@ -31,7 +33,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApi(retrofit: Retrofit): ApiService{
+    fun provideApi(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
 
