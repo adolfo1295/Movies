@@ -3,13 +3,14 @@ package com.example.moviedolphin.di.module
 import androidx.databinding.library.BuildConfig
 import com.example.moviedolphin.api.ApiService
 import com.example.moviedolphin.api.factory.LiveDataCallAdapterFactory
-import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
+
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
@@ -24,7 +25,7 @@ class NetworkModule {
     fun provideApiService(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(NetworkResponseAdapterFactory())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .baseUrl(URL_BASE)
             .client(okHttpClient)

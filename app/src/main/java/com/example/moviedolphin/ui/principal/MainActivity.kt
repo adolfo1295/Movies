@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.example.moviedolphin.BaseApp
 import com.example.moviedolphin.R
 import com.example.moviedolphin.api.responses.ApiResponse
@@ -24,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         (applicationContext as BaseApp).appComponent.inject(this)
-        viewModel.getPopular().observe(this, Observer {
-            Log.d("MainActivity","Response $it")
-
-        })
+        viewModel.getMovies()
+        viewModel.getMoviesLive().observe(this) {
+            Log.d("Retrofit","Hola: $it")
+        }
     }
 }
