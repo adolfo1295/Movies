@@ -1,4 +1,4 @@
-package com.example.moviedolphin.ui.principal
+package com.example.moviedolphin.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData

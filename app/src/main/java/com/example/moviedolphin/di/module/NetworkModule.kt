@@ -2,8 +2,6 @@ package com.example.moviedolphin.di.module
 
 import androidx.databinding.library.BuildConfig
 import com.example.moviedolphin.api.ApiService
-import com.example.moviedolphin.api.factory.LiveDataCallAdapterFactory
-
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -26,7 +24,6 @@ class NetworkModule {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addCallAdapterFactory(LiveDataCallAdapterFactory())
             .baseUrl(URL_BASE)
             .client(okHttpClient)
             .build()

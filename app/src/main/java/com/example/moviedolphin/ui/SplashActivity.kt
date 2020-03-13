@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.moviedolphin.R
-import com.example.moviedolphin.ui.principal.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
